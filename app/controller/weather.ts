@@ -3,9 +3,9 @@ import { Controller } from 'egg'
 class WeatherController extends Controller {
   async weather15() {
     const { ctx, service } = this
-    const cityName: string = ctx.query.city
+    const cityName: string = ctx.query.cityName
     const result = await service.weather.getWeather15(cityName)
-    ctx.body = result
+    return result 
   }
 }
 

@@ -19,12 +19,13 @@ class WeatherService extends Service {
   }
 
   async getWeather15(cityName: string) {
+    if(!cityName) return this.ctx.error(400, 'no cityName in query')
     const cityCode = this.findCityCode(cityName)
     const result = await this.ctx.curl(`${weather15Url}/${cityCode}`, { dataType: 'json' })
     if (result.status === 200 && result.data.status === 200) {
-      return result.data.data
+      return result.data.data as Object
     } else {
-      return Promise.reject(result)
+      return {}
     }
   }
 }
