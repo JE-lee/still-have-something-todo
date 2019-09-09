@@ -1,4 +1,4 @@
-import { EggAppConfig, EggAppInfo, PowerPartial, Context } from 'egg'
+import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg'
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>
@@ -18,12 +18,6 @@ export default (appInfo: EggAppInfo) => {
   // the return config will combines to EggAppConfig
   return {
     ...config,
-    ...bizConfig,
-    onerror: {
-      all(err: any, ctx: Context) {
-        console.log('err', err)
-        console.log('ctx', ctx)
-      },
-    },
+    ...bizConfig
   }
 }
